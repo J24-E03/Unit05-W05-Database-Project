@@ -25,6 +25,8 @@ This capstone project is designed to assess your understanding of database conce
    Write **at least 8 user stories** in a `.txt` file to help define your database's needs.  
    Example:  
    `As a customer, I want to see a list of all products in a specific category.`
+
+   
    `As a vendor, I want to be able to list an item in the shop.`
 
 
