@@ -26,7 +26,7 @@ This capstone project is designed to assess your understanding of database conce
    Example:  
    `As a customer, I want to see a list of all products in a specific category.`
 
-   
+
    `As a vendor, I want to be able to list an item in the shop.`
 
 
@@ -50,8 +50,6 @@ Your database must have:
   - Use **JOINs**
   - Perform realistic business logic
 - ✅ Save these queries as **views** for easier future access
-- ✅ Use **COALESCE** in at least one essential query (if applicable)
-- ✅ Use the **IN operator** for one of your queries (especially when using OR conditions)
 
 #### Custom Logic
 
@@ -67,6 +65,9 @@ Your database must have:
 - Implement a **pagination function** that accepts `LIMIT` and `OFFSET`
 - Use a **CRON job or scheduled logic** involving `TIME` or `DATE` (e.g., auto-archiving old records)
   - Document this using SQL comments in your script
+- Use **COALESCE** in at least one essential query (if applicable)
+- Use the **IN operator** for one of your queries (especially when using OR conditions)
+
 
 ####  Bonus 2: Java CLI Application (JDBC)
 
