@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.dci.client.MovieDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,16 +35,16 @@ public class HistoryInfo {
                 "Recommendation: \"" + movies + '\"';
     }
 
-    public String prepareHistoryTobeShown() {
-        final String BOLD = "\u001B[1m";
-        final String ITALIC = "\u001B[3m";
-        final String RESET_BOLD = "\u001B[22m";
-        final String RESET_ITALIC = "\u001B[23m";
-        final String NEW_LINE = "\n";
-
-        return BOLD + "Timestamp: " + RESET_BOLD + ITALIC + timestamp + RESET_ITALIC + NEW_LINE +
-                BOLD +  "Your query: \"" + RESET_BOLD + ITALIC + query + '\"' + RESET_ITALIC + NEW_LINE +
-                BOLD + "Recommendation: " + RESET_BOLD + NEW_LINE +
-                String.join(NEW_LINE ,movies.stream().map(MovieDetails::makeMovieDetailsReadyForPrint).toList());
-    }
+//    public String prepareHistoryTobeShown() {
+//        final String BOLD = "\u001B[1m";
+//        final String ITALIC = "\u001B[3m";
+//        final String RESET_BOLD = "\u001B[22m";
+//        final String RESET_ITALIC = "\u001B[23m";
+//        final String NEW_LINE = "\n";
+//
+//        return BOLD + "Timestamp: " + RESET_BOLD + ITALIC + timestamp + RESET_ITALIC + NEW_LINE +
+//                BOLD +  "Your query: \"" + RESET_BOLD + ITALIC + query + '\"' + RESET_ITALIC + NEW_LINE +
+//                BOLD + "Recommendation: " + RESET_BOLD + NEW_LINE +
+//                String.join(NEW_LINE ,movies.stream().map(MovieDetails::makeMovieDetailsReadyForPrint).toList());
+//    }
 }

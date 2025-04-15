@@ -1,6 +1,6 @@
 package org.dci;
 
-import org.dci.domain.MovieDetails;
+import org.dci.client.MovieDetails;
 
 import java.util.ArrayList;
 import java.util.Arrays;

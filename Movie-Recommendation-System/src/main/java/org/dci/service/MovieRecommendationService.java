@@ -3,17 +3,17 @@ package org.dci.service;
 import lombok.Setter;
 import org.dci.client.HuggingFaceApiClient;
 import org.dci.client.MovieApiClient;
-import org.dci.domain.MovieDetails;
+import org.dci.domain.Genre;
+import org.dci.client.MovieDetails;
+import org.dci.repository.GenreRepository;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 public class MovieRecommendationService {
     private HuggingFaceApiClient aiApi;
     private MovieApiClient movieApi;
+    private static final GenreRepository genreRepository = GenreRepository.getInstance();
 
     private static MovieRecommendationService instance = null;
 
@@ -35,4 +35,12 @@ public class MovieRecommendationService {
         }
         return movieNames.stream().map(movieApi::getMovieDetails).toList();
     }
+
+    public void populateGenres() {
+        if (genreRepository.isGenresEmpty()) {
+            Set<Genre> genres = movieApi.loadGenres();
+           genres.forEach(genre -> {genreRepository.addNewGenre(genre);});
+        }
+    }
+
 }

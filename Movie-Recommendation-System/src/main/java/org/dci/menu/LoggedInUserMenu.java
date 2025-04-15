@@ -1,23 +1,26 @@
 package org.dci.menu;
 
-import lombok.Data;
-import org.dci.domain.MovieDetails;
+import org.dci.client.MovieDetails;
+import org.dci.domain.Movie;
 import org.dci.domain.User;
 import org.dci.domain.UserType;
-import org.dci.repository.HistoryRepository;
+
+import org.dci.repository.MovieRepository;
 import org.dci.service.MovieRecommendationService;
 import org.dci.utils.Colors;
 import org.dci.utils.Logger;
 
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class LoggedInUserMenu extends Menu {
 
     private User loggedInUser;
-    private final MovieRecommendationService movieService = MovieRecommendationService.getInstance();;
+    private final MovieRecommendationService movieService = MovieRecommendationService.getInstance();
+    private final MovieRepository movieRepository = MovieRepository.getInstance();
 
 
     public LoggedInUserMenu(User user) {
@@ -55,17 +58,22 @@ public class LoggedInUserMenu extends Menu {
             }
 
             System.out.println();
-            List<MovieDetails> movies = movieService.getMovieRecommendations(userInput, loggedInUser.returnNumberOfSuggestions());
+            List<MovieDetails> moviesDetails = movieService.getMovieRecommendations(userInput, loggedInUser.returnNumberOfSuggestions());
 
-            if (movies.isEmpty()) {
+            if (moviesDetails.isEmpty()) {
                 Logger.printResult("Sorry, I couldn't find any movie based of what you want.");
                 return;
             }
+            List<Movie> movies = new ArrayList<>();
+            moviesDetails.forEach(movieDetails -> {
+                Optional<Movie> movie = movieRepository.addNewMovie(movieDetails);
+                if (movie.isPresent()) {
+                    movies.add(movie.get());
+                }
+            });
 
 
-            movies.forEach(movieDetails -> Logger.printResult(movieDetails.makeMovieDetailsReadyForPrint()));
-
-            //historyRepository.addUserHistory(loggedInUser.getId(), userInput, movies, LocalDateTime.now());
+            movies.forEach(movie -> Logger.printResult(movie.makeMovieDetailsReadyForPrint()));
 
         } catch (InterruptedException e) {
             Logger.error("An error occurred: " + e.getMessage());

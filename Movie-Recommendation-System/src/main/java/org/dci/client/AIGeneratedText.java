@@ -1,4 +1,4 @@
-package org.dci.domain;
+package org.dci.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

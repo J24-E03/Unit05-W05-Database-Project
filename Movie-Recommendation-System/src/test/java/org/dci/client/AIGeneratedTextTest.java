@@ -1,6 +1,5 @@
 package org.dci.client;
 
-import org.dci.domain.AIGeneratedText;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

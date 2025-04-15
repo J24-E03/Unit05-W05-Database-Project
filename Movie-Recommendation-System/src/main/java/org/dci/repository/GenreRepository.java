@@ -6,10 +6,7 @@ import org.dci.utils.HikariCPConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 public class GenreRepository {
@@ -56,6 +53,7 @@ public class GenreRepository {
                     String name = resultSet.getString("name");
                     Genre genre = new Genre();
                     genre.setName(name);
+                    genre.setId(genreId);
                     return Optional.of(genre);
                 }
             }
@@ -65,30 +63,41 @@ public class GenreRepository {
         return Optional.empty();
     }
 
-    public Optional<Genre> addNewGenre(Connection connection, String genreName) {
+    public void addNewGenre(Genre genre) {
         String query = """
-                INSERT INTO genres(name)
-                VALUES (?)
-                ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
-                RETURNING genre_id;
+                INSERT INTO genres(genre_id, name)
+                VALUES (?,?)
                 """;
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, genreName);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, genre.getId());
+            preparedStatement.setString(2, genre.getName());
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("Failed to add genre");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isGenresEmpty() {
+        String query = "SELECT COUNT(*) AS genres_count FROM genres";
+        int genresCount = 0;
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();) {
+            try (ResultSet resultSet = statement.executeQuery(query)) {
                 if (resultSet.next()) {
-                    int genreId = resultSet.getInt("genre_id");
-                    Genre genre = new Genre();
-                    genre.setId(genreId);
-                    genre.setName(genreName);
-                    return Optional.of(genre);
+                    genresCount = resultSet.getInt("genres_count");
                 }
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        return Optional.empty();
+        return genresCount == 0;
     }
+
 }

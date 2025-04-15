@@ -1,4 +1,4 @@
-package org.dci.domain;
+package org.dci.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

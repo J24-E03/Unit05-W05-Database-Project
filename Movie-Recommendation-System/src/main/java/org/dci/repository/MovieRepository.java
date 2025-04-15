@@ -3,14 +3,17 @@ package org.dci.repository;
 import com.zaxxer.hikari.HikariDataSource;
 import org.dci.domain.Genre;
 import org.dci.domain.Movie;
+import org.dci.client.MovieDetails;
 import org.dci.utils.HikariCPConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 public class MovieRepository {
     private static MovieRepository instance = null;
@@ -55,7 +58,7 @@ public class MovieRepository {
         }
         return Optional.empty();
     }
-    public void addNewMovie(Movie movie) {
+    public Optional<Movie> addNewMovie(MovieDetails movieDetails) {
         String query = """
                 INSERT INTO movies (title, release_date, overview, rating)
                 VALUES (?, ?, ?, ?)
@@ -63,30 +66,45 @@ public class MovieRepository {
                 RETURNING movie_id;
                 """;
 
+        Integer movieId = null;
         try (Connection connection = dataSource.getConnection();) {
             connection.setAutoCommit(false);
 
+            Set<Genre> movieGenres = new HashSet<>();
             try(PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-                preparedStatement.setString(1, movie.getTitle());
-                preparedStatement.setDate(2, Date.valueOf(movie.getReleaseDate()));
-                preparedStatement.setString(3, movie.getOverview());
-                preparedStatement.setDouble(4, movie.getRating());
-
+                preparedStatement.setString(1, movieDetails.getTitle());
+                preparedStatement.setDate(2, Date.valueOf(movieDetails.getReleaseDate()));
+                preparedStatement.setString(3, movieDetails.getOverview());
+                preparedStatement.setDouble(4, movieDetails.getRating());
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        int movieId = resultSet.getInt("movie_id");
-                        movie.getGenres().forEach(genre -> {
-                            Optional<Genre> genreOptional = genreRepository.addNewGenre(connection, genre.getName());
-                            if (genreOptional.isEmpty()) {
-                                throw new RuntimeException("Could not add genre: " + genre.getName());
+                        movieId = resultSet.getInt("movie_id");
+                        int movieIdFinal = movieId;
+                        movieDetails.getGenreIds().forEach(genreId -> {
+                            Optional<Genre> genre = genreRepository.getGenre(genreId);
+                            if (genre.isPresent()) {
+                                addNewMovieGenreRelation(connection, movieIdFinal, genre.get().getId());
+                                movieGenres.add(genre.get());
                             }
-                            addNewMovieGenreRelation(connection, movieId, genreOptional.get().getId());
+
                         });
-                        movie.setId(resultSet.getInt("movie_id"));
                     }
                 }
                 connection.commit();
+                if (movieId != null) {
+                    Movie movie = new Movie();
+                    movie.setGenres(movieGenres);
+                    movie.setId(movieId);
+                    movie.setTitle(movieDetails.getTitle());
+                    movie.setOverview(movieDetails.getOverview());
+                    movie.setReleaseDate(movieDetails.getReleaseDate());
+                    movie.setRating(movieDetails.getRating());
+                    return Optional.of(movie);
+                } else {
+                    return Optional.empty();
+                }
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

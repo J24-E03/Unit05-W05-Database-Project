@@ -2,8 +2,6 @@ package org.dci.client;
 
 import okhttp3.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.dci.domain.AIGeneratedText;
-import org.dci.domain.AIQuery;
 import org.dci.utils.Logger;
 import org.dci.utils.ObjectMapperUtils;
 

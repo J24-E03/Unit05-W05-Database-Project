@@ -2,7 +2,7 @@ package org.dci.service;
 
 import org.dci.client.HuggingFaceApiClient;
 import org.dci.client.MovieApiClient;
-import org.dci.domain.MovieDetails;
+import org.dci.client.MovieDetails;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
