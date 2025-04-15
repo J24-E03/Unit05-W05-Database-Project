@@ -17,8 +17,7 @@ public class ConsoleApplication {
 
     public void run() {
         userRepository = UserRepository.getInstance();
-        historyRepository = HistoryRepository.getInstance();
-        MainMenu mainMenu = new MainMenu(userRepository, historyRepository);
+        MainMenu mainMenu = new MainMenu(userRepository);
         mainMenu.show();;
         exitSystem();
     }

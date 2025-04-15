@@ -17,14 +17,12 @@ import java.util.List;
 public class LoggedInUserMenu extends Menu {
 
     private User loggedInUser;
-    //private final HistoryRepository historyRepository;
     private final MovieRecommendationService movieService = MovieRecommendationService.getInstance();;
 
 
-    public LoggedInUserMenu(User user, HistoryRepository historyRepository) {
+    public LoggedInUserMenu(User user) {
         super("Welcome " + user.getUsername(), new ArrayList<>());
         loggedInUser = user;
-        //this.historyRepository = historyRepository;
         actions.clear();
         actions.addAll(getActions());
     }

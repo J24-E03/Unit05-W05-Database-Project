@@ -14,14 +14,12 @@ import java.util.Objects;
 
 public class MainMenu extends Menu {
     private UserRepository userRepository;
-    private HistoryRepository historyRepository;
 
 
 
-    public MainMenu(UserRepository userRepository, HistoryRepository historyRepository) {
+    public MainMenu(UserRepository userRepository) {
         super("Welcome to Movie Recommendation system", new ArrayList<>());
         this.userRepository = userRepository;
-        this.historyRepository = historyRepository;
         actions.clear();
         actions.addAll(getActions());
     }
@@ -62,7 +60,7 @@ public class MainMenu extends Menu {
 
         // get user date of birth
         LocalDate birthDate = inputBirthDate();
-        if (!birthDate.equals(LocalDate.now())) {
+        if (birthDate.equals(LocalDate.now())) {
             return;
         }
 
@@ -180,6 +178,7 @@ public class MainMenu extends Menu {
                 if (Objects.equals(fullName, "-1")) {
                     break;
                 }
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -240,7 +239,7 @@ public class MainMenu extends Menu {
 
         try {
             User loggedInUser = userRepository.login(username, password);
-            LoggedInUserMenu loggedInUserMenu = new LoggedInUserMenu(loggedInUser,historyRepository);
+            LoggedInUserMenu loggedInUserMenu = new LoggedInUserMenu(loggedInUser);
             loggedInUserMenu.show();
         } catch (Exception e) {
             Logger.error("An error occurred: " + e.getMessage());
