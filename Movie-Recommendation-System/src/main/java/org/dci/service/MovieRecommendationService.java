@@ -3,6 +3,7 @@ package org.dci.service;
 import lombok.Setter;
 import org.dci.client.HuggingFaceApiClient;
 import org.dci.client.MovieApiClient;
+import org.dci.domain.Actor;
 import org.dci.domain.Genre;
 import org.dci.client.MovieDetails;
 import org.dci.repository.GenreRepository;
@@ -29,7 +30,7 @@ public class MovieRecommendationService {
 
 
     public List<MovieDetails> getMovieRecommendations(String userInput, int movieNumbers) {
-        Set<String> movieNames = aiApi.getMovieRecommendation(userInput,  movieNumbers);
+        Set<String> movieNames = aiApi.getMovieRecommendation(userInput, movieNumbers);
         if (movieNames.isEmpty()) {
             return Collections.emptyList();
         }
@@ -41,6 +42,10 @@ public class MovieRecommendationService {
             Set<Genre> genres = movieApi.loadGenres();
            genres.forEach(genre -> {genreRepository.addNewGenre(genre);});
         }
+    }
+
+    public List<Actor> getMovieActor(int movieId) {
+        return movieApi.getMovieActors(movieId);
     }
 
 }

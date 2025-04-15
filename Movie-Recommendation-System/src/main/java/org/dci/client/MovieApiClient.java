@@ -5,11 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.dci.domain.Actor;
 import org.dci.domain.Genre;
 
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class MovieApiClient {
@@ -17,8 +19,10 @@ public class MovieApiClient {
     private static final String API_URL_FETCH_MOVIE = "https://api.themoviedb.org/3";
     private static final String API_URL_FETCH_MOVIE_GENRES = "https://api.themoviedb.org/3/genre/movie/list?language=en";
     private static final String API_URL_FETCH_TV_GENRES = "https://api.themoviedb.org/3/genre/tv/list?language=en";
+    private static final String API_URL_FETCH_MOVIE_ACTORS = "https://api.themoviedb.org/3/genre/tv/list?language=en";
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final OkHttpClient client = new OkHttpClient();
+    private static final int LIMIT = 9;
 
     public MovieDetails getMovieDetails(String movieName) {
         try {
@@ -102,4 +106,27 @@ public class MovieApiClient {
 
         return genres;
     }
+
+    public List<Actor> getMovieActors(int movieId) {
+        try {
+            String url = API_URL_FETCH_MOVIE + "/movie/" + movieId + "/credits?api_key=" + API_KEY;
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .get()
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            if (response.isSuccessful() && response.body() != null) {
+                String json = response.body().string();
+                CreditsApiResponse credits = objectMapper.readerFor(CreditsApiResponse.class).readValue(json);
+                return credits.getActors().subList(0, Math.min(credits.getActors().size() - 1, LIMIT));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return List.of();
+    }
+
 }

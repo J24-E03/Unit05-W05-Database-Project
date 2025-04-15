@@ -1,6 +1,7 @@
 package org.dci.repository;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.dci.domain.Actor;
 import org.dci.domain.Genre;
 import org.dci.domain.Movie;
 import org.dci.client.MovieDetails;
@@ -56,7 +57,7 @@ public class MovieRepository {
         }
         return Optional.empty();
     }
-    public Optional<Movie> addNewMovie(MovieDetails movieDetails) {
+    public Optional<Movie> addNewMovie(MovieDetails movieDetails, List<Actor> actors) {
         String query = """
                 INSERT INTO movies (title, release_date, overview, rating)
                 VALUES (?, ?, ?, ?)
@@ -79,6 +80,7 @@ public class MovieRepository {
                     if (resultSet.next()) {
                         movieId = resultSet.getInt("movie_id");
                         int movieIdFinal = movieId;
+                        actors.forEach(actor -> {addMovieActorRelation(connection, movieIdFinal, actor.getId());});
                         movieDetails.getGenreIds().forEach(genreId -> {
                             Optional<Genre> genre = genreRepository.getGenre(genreId);
                             if (genre.isPresent()) {
@@ -87,6 +89,8 @@ public class MovieRepository {
                                     addNewMovieGenreRelation(connection, movieIdFinal, genreFinal.getId());
                                 }
                                 movieGenres.add(genre.get());
+
+
                             }
 
                         });
@@ -101,6 +105,7 @@ public class MovieRepository {
                     movie.setOverview(movieDetails.getOverview());
                     movie.setReleaseDate(movieDetails.getReleaseDate());
                     movie.setRating(movieDetails.getRating());
+                    movie.setActors(actors);
                     return Optional.of(movie);
                 } else {
                     return Optional.empty();
@@ -190,6 +195,27 @@ public class MovieRepository {
                 return Optional.empty();
             }
 
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addMovieActorRelation(Connection connection, Integer movieId, Integer actorId) {
+        String query = """
+                INSERT INTO movie_actors (movie_id, actor_id)
+                VALUES (?, ?)
+                """;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setInt(1, movieId);
+            preparedStatement.setInt(2, actorId);
+
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (updatedRows == 0) {
+                throw new RuntimeException("Could not add movie actor relationship:");
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

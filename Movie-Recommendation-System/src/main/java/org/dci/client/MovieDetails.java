@@ -16,6 +16,8 @@ import java.util.Set;
 public class MovieDetails {
     @JsonProperty("original_title")
     private String title;
+    @JsonProperty("id")
+    private int id;
     @JsonProperty("release_date")
     private String releaseDate;
     @JsonProperty("overview")

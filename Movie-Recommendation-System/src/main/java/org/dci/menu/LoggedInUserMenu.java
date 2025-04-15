@@ -1,10 +1,12 @@
 package org.dci.menu;
 
 import org.dci.client.MovieDetails;
+import org.dci.domain.Actor;
 import org.dci.domain.Movie;
 import org.dci.domain.User;
 import org.dci.domain.UserType;
 
+import org.dci.repository.ActorRepository;
 import org.dci.repository.MovieRepository;
 import org.dci.repository.QueryRepository;
 import org.dci.repository.UserRepository;
@@ -25,6 +27,7 @@ public class LoggedInUserMenu extends Menu {
     private final MovieRepository movieRepository = MovieRepository.getInstance();
     private final QueryRepository queryRepository = QueryRepository.getInstance();
     private final UserRepository userRepository = UserRepository.getInstance();
+    private final ActorRepository actorRepository = ActorRepository.getInstance();
 
 
     public LoggedInUserMenu(User user) {
@@ -64,14 +67,18 @@ public class LoggedInUserMenu extends Menu {
             System.out.println();
             List<MovieDetails> moviesDetails = movieService.getMovieRecommendations(userInput, loggedInUser.returnNumberOfSuggestions());
 
+
             if (moviesDetails.isEmpty()) {
                 Logger.printResult("Sorry, I couldn't find any movie based of what you want.");
                 return;
             }
+
             List<Movie> movies = new ArrayList<>();
-            moviesDetails.forEach(movieDetails -> {
-                Optional<Movie> movie = movieRepository.addNewMovie(movieDetails);
-                movie.ifPresent(movies::add);
+            moviesDetails.forEach(movie -> {
+                List<Actor> actors = movieService.getMovieActor(movie.getId());
+                actors.forEach(actorRepository::addNewActor);
+                Optional<Movie> movieOptional = movieRepository.addNewMovie(movie, actors);
+                movieOptional.ifPresent(movies::add);
             });
 
 

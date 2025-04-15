@@ -3,6 +3,7 @@ package org.dci.domain;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,6 +14,7 @@ public class Movie {
     private String overview;
     private double rating;
     private Set<Genre> genres;
+    private List<Actor> actors;
 
     private String formatLine(String text, int boxWidth) {
         int visibleTextLength = visibleLength(text);
@@ -61,6 +63,7 @@ public class Movie {
                 ", overview='" + overview + '\'' +
                 ", rating=" + rating +
                 ", genres=" + genres +
+                ", actors=" + actors +
                 '}';
     }
 
