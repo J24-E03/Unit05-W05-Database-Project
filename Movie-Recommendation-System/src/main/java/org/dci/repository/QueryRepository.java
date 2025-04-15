@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -81,7 +82,7 @@ public class QueryRepository {
         }
     }
 
-    public List<Query> viewAllUserHistories(User loggedUser) throws SQLException {
+    public List<Query> viewAllUserHistories(User loggedUser) {
         String sqlQuery = """
                 SELECT q.query_id, q.query, q.timestamp, qm.movie_id
                 FROM queries q
@@ -110,6 +111,45 @@ public class QueryRepository {
             }
             queryMoviesMap.forEach((query, movies) -> query.setMovies(movies));
             return queryMoviesMap.keySet().stream().toList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    public List<Query> viewUserHistoryInRange (User loggedUser, LocalDateTime from, LocalDateTime to) {
+        String sqlQuery = """
+                SELECT q.query_id, q.query, q.timestamp, qm.movie_id
+                FROM queries q
+                JOIN query_movies qm ON qm.query_id = q.query_id
+                WHERE q.user_id = ? AND q.timestamp >= ? AND q.timestamp <= ?
+                """;
+        Map<Query,List<Movie>> queryMoviesMap = new HashMap<>();
+        try(Connection connection = dataSource.getConnection();) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+                preparedStatement.setInt(1, loggedUser.getId());
+                preparedStatement.setTimestamp(2, Timestamp.valueOf(from));
+                preparedStatement.setTimestamp(3, Timestamp.valueOf(to));
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Query movieQuery = new Query(resultSet.getInt("query_id"),
+                                loggedUser.getId(),
+                                resultSet.getString("query"),
+                                resultSet.getTimestamp("timestamp").toLocalDateTime());
+
+                        queryMoviesMap.putIfAbsent(movieQuery, new ArrayList<>());
+                        Optional<Movie> movieOptional = movieRepository.getMovieById(connection, resultSet.getInt("movie_id"));
+                        movieOptional.ifPresent(movie -> queryMoviesMap.get(movieQuery).add(movie));
+
+                    }
+                }
+            }
+            queryMoviesMap.forEach((query, movies) -> query.setMovies(movies));
+            return queryMoviesMap.keySet().stream().toList();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+
     }
 }

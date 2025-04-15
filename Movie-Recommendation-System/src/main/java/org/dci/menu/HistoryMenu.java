@@ -4,6 +4,9 @@ import org.dci.domain.User;
 import org.dci.repository.QueryRepository;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,11 +34,31 @@ public class HistoryMenu extends Menu {
         System.out.println("These are your chat histories:");
         try {
             queryRepository.viewAllUserHistories(loggedUser).forEach(query -> System.out.println(query.prepareHistoryTobeShown()));
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
 
     }
-    private void chooseTimeRange() {}
+    private void chooseTimeRange() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            System.out.println("Enter start date (yyyy-MM-dd):");
+            String startInput = scanner.nextLine();
+            LocalDate startDate = LocalDate.parse(startInput, formatter);
+
+            System.out.println("Enter end date (yyyy-MM-dd):");
+            String endInput = scanner.nextLine();
+            LocalDate endDate = LocalDate.parse(endInput, formatter);
+
+            LocalDateTime start = startDate.atStartOfDay();
+            LocalDateTime end = endDate.atTime(23, 59, 59);
+
+            System.out.println("Filtered history from " + start + " to " + end + ":");
+            queryRepository.viewUserHistoryInRange(loggedUser, start, end)
+                    .forEach(query -> System.out.println(query.prepareHistoryTobeShown()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
