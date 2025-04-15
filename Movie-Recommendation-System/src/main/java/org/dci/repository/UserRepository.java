@@ -192,4 +192,21 @@ public class UserRepository {
         }
         return birthDate;
     }
+
+    public boolean upgradeUser(User user) {
+        String query = """
+                UPDATE users SET type = 'PREMIUM_USER' WHERE user_id = ?
+                """;
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setInt(1, user.getId());
+
+            int result = preparedStatement.executeUpdate();
+            return result > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

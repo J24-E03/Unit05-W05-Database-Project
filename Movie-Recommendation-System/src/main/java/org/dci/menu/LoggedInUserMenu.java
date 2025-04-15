@@ -7,6 +7,7 @@ import org.dci.domain.UserType;
 
 import org.dci.repository.MovieRepository;
 import org.dci.repository.QueryRepository;
+import org.dci.repository.UserRepository;
 import org.dci.service.MovieRecommendationService;
 import org.dci.utils.Colors;
 import org.dci.utils.Logger;
@@ -23,6 +24,7 @@ public class LoggedInUserMenu extends Menu {
     private final MovieRecommendationService movieService = MovieRecommendationService.getInstance();
     private final MovieRepository movieRepository = MovieRepository.getInstance();
     private final QueryRepository queryRepository = QueryRepository.getInstance();
+    private final UserRepository userRepository = UserRepository.getInstance();
 
 
     public LoggedInUserMenu(User user) {
@@ -69,9 +71,7 @@ public class LoggedInUserMenu extends Menu {
             List<Movie> movies = new ArrayList<>();
             moviesDetails.forEach(movieDetails -> {
                 Optional<Movie> movie = movieRepository.addNewMovie(movieDetails);
-                if (movie.isPresent()) {
-                    movies.add(movie.get());
-                }
+                movie.ifPresent(movies::add);
             });
 
 
@@ -100,13 +100,16 @@ public class LoggedInUserMenu extends Menu {
             }
             if (userInput.equalsIgnoreCase("Y")) {
                 keepAsking = false;
-                loggedInUser.setType(UserType.PREMIUM_USER);
-                Logger.printInfo("Congratulations! Your account has been successfully upgraded to Premium. Enjoy your new benefits!");
-                populateUserActions();
+                if (userRepository.upgradeUser(loggedInUser)) {
+                    loggedInUser.setType(UserType.PREMIUM_USER);
+                    Logger.printInfo("Congratulations! Your account has been successfully upgraded to Premium. Enjoy your new benefits!");
+                    populateUserActions();
+                } else {
+                    System.out.println("An Error occurred while upgrading your account. Please try again.");
+                }
             }
 
         } while (keepAsking);
-
     }
 
     private void populateUserActions() {
