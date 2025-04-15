@@ -1,0 +1,32 @@
+{
+  "id" : 14,
+  "userId" : 1,
+  "timestamp" : "2025-02-19T22:09:01.678914085",
+  "query" : "horror movies",
+  "movies" : [ {
+    "original_title" : "Night of the Living Dead",
+    "release_date" : "1968-10-04",
+    "overview" : "A group of strangers trapped in a farmhouse find themselves fending off a horde of recently dead, flesh-eating ghouls.",
+    "vote_average" : "7.612"
+  }, {
+    "original_title" : "The Silence of the Lambs",
+    "release_date" : "1991-02-14",
+    "overview" : "Clarice Starling is a top student at the FBI's training academy.  Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism.  Crawford believes that Lecter may have insight into a case and that Starling, as an attractive young woman, may be just the bait to draw him out.",
+    "vote_average" : "8.3"
+  }, {
+    "original_title" : "Alien",
+    "release_date" : "1979-05-25",
+    "overview" : "During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.",
+    "vote_average" : "8.161"
+  }, {
+    "original_title" : "Psycho",
+    "release_date" : "1960-06-22",
+    "overview" : "When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life, she ends up at the notorious Bates Motel, where manager Norman Bates cares for his housebound mother.",
+    "vote_average" : "8.424"
+  }, {
+    "original_title" : "The Exorcist",
+    "release_date" : "1973-12-26",
+    "overview" : "When a charming 12-year-old girl takes on the characteristics and voices of others, doctors say there is nothing they can do. As people begin to die, the girl's mother realizes her daughter has been possessed by the devil - and that her daughter's only possible hope lies with two priests and the ancient rite of demonic exorcism.",
+    "vote_average" : "7.731"
+  } ]
+}

@@ -1,0 +1,32 @@
+{
+  "id" : 4,
+  "userId" : 1,
+  "timestamp" : "2025-02-19T12:06:50.771775933",
+  "query" : "best horror films ever",
+  "movies" : [ {
+    "original_title" : "The Silence of the Lambs",
+    "release_date" : "1991-02-14",
+    "overview" : "Clarice Starling is a top student at the FBI's training academy.  Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism.  Crawford believes that Lecter may have insight into a case and that Starling, as an attractive young woman, may be just the bait to draw him out.",
+    "vote_average" : "8.345"
+  }, {
+    "original_title" : "Rosemary's Baby",
+    "release_date" : "1968-06-12",
+    "overview" : "A young couple, Rosemary and Guy, moves into an infamous New York apartment building, known by frightening legends and mysterious events, with the purpose of starting a family.",
+    "vote_average" : "7.8"
+  }, {
+    "original_title" : "Psycho",
+    "release_date" : "1960-06-22",
+    "overview" : "When larcenous real estate clerk Marion Crane goes on the lam with a wad of cash and hopes of starting a new life, she ends up at the notorious Bates Motel, where manager Norman Bates cares for his housebound mother.",
+    "vote_average" : "8.424"
+  }, {
+    "original_title" : "The Shining",
+    "release_date" : "1980-05-23",
+    "overview" : "Jack Torrance accepts a caretaker job at the Overlook Hotel, where he, along with his wife Wendy and their son Danny, must live isolated from the rest of the world for the winter. But they aren't prepared for the madness that lurks within.",
+    "vote_average" : "8.211"
+  }, {
+    "original_title" : "The Exorcist",
+    "release_date" : "1973-12-26",
+    "overview" : "When a charming 12-year-old girl takes on the characteristics and voices of others, doctors say there is nothing they can do. As people begin to die, the girl's mother realizes her daughter has been possessed by the devil - and that her daughter's only possible hope lies with two priests and the ancient rite of demonic exorcism.",
+    "vote_average" : "7.731"
+  } ]
+}

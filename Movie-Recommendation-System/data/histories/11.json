@@ -1,0 +1,57 @@
+{
+  "id" : 11,
+  "userId" : 4,
+  "timestamp" : "2025-02-19T16:15:51.428907203",
+  "query" : "i like some cartoons like inside out",
+  "movies" : [ {
+    "original_title" : "Ratatouille",
+    "release_date" : "2007-06-28",
+    "overview" : "Remy, a resident of Paris, appreciates good food and has quite a sophisticated palate. He would love to become a chef so he can create and enjoy culinary masterpieces to his heart's delight. The only problem is, Remy is a rat. When he winds up in the sewer beneath one of Paris' finest restaurants, the rodent gourmet finds himself ideally placed to realize his dream.",
+    "vote_average" : "7.825"
+  }, {
+    "original_title" : "Inside Out",
+    "release_date" : "2015-06-17",
+    "overview" : "When 11-year-old Riley moves to a new city, her Emotions team up to help her through the transition. Joy, Fear, Anger, Disgust and Sadness work together, but when Joy and Sadness get lost, they must journey through unfamiliar places to get back home.",
+    "vote_average" : "7.912"
+  }, {
+    "original_title" : "Toy Story",
+    "release_date" : "1995-11-22",
+    "overview" : "Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.",
+    "vote_average" : "7.97"
+  }, {
+    "original_title" : "Coco",
+    "release_date" : "2017-10-27",
+    "overview" : "Despite his family’s baffling generations-old ban on music, Miguel dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz. Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector, and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history.",
+    "vote_average" : "8.2"
+  }, {
+    "original_title" : "Up",
+    "release_date" : "2009-05-28",
+    "overview" : "Carl Fredricksen spent his entire life dreaming of exploring the globe and experiencing life to its fullest. But at age 78, life seems to have passed him by, until a twist of fate (and a persistent 8-year old Wilderness Explorer named Russell) gives him a new lease on life.",
+    "vote_average" : "7.959"
+  }, {
+    "original_title" : "Frozen",
+    "release_date" : "2013-11-20",
+    "overview" : "Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. Fate takes her on a dangerous journey in an attempt to end the eternal winter that has fallen over the kingdom. She's accompanied by ice delivery man Kristoff, his reindeer Sven, and snowman Olaf. On an adventure where she will find out what friendship, courage, family, and true love really means.",
+    "vote_average" : "7.246"
+  }, {
+    "original_title" : "Zootopia",
+    "release_date" : "2016-02-11",
+    "overview" : "Determined to prove herself, Officer Judy Hopps, the first bunny on Zootopia's police force, jumps at the chance to crack her first case - even if it means partnering with scam-artist fox Nick Wilde to solve the mystery.",
+    "vote_average" : "7.7"
+  }, {
+    "original_title" : "Finding Nemo",
+    "release_date" : "2003-05-30",
+    "overview" : "Nemo, an adventurous young clownfish, is unexpectedly taken from his Great Barrier Reef home to a dentist's office aquarium. It's up to his worrisome father Marlin and a friendly but forgetful fish Dory to bring Nemo home -- meeting vegetarian sharks, surfer dude turtles, hypnotic jellyfish, hungry seagulls, and more along the way.",
+    "vote_average" : "7.8"
+  }, {
+    "original_title" : "The Incredibles",
+    "release_date" : "2004-10-27",
+    "overview" : "Bob Parr has given up his superhero days to log in time as an insurance adjuster and raise his three children with his formerly heroic wife in suburbia. But when he receives a mysterious assignment, it's time to get back into costume.",
+    "vote_average" : "7.709"
+  }, {
+    "original_title" : "Au pan coupé",
+    "release_date" : "1968-02-07",
+    "overview" : "Jeanne looks back on her love for Jean. The melancholic young man wouldn't accept the world as it was, always wishing to depart. She doesn't know that he's dead.",
+    "vote_average" : "7.3"
+  } ]
+}

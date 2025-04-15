@@ -1,0 +1,32 @@
+{
+  "id" : 3,
+  "userId" : 1,
+  "timestamp" : "2025-02-19T11:45:46.242274497",
+  "query" : "best science fiction movies ever",
+  "movies" : [ {
+    "original_title" : "Alien",
+    "release_date" : "1979-05-25",
+    "overview" : "During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.",
+    "vote_average" : "8.161"
+  }, {
+    "original_title" : "The Matrix",
+    "release_date" : "1999-03-31",
+    "overview" : "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+    "vote_average" : "8.221"
+  }, {
+    "original_title" : "Rifftrax : Star Wars Episode V: The Empire Strikes Back",
+    "release_date" : "",
+    "overview" : "Your favorite sand-phobic, midichlorian-rich super villain is back!  And this time his capes are even more fabulous, his thigh-high Uggs resplendent like never before, and his burnt chicken head cloaked in the shiniest plastic helmet yet! And if that wasn't enough, Mike, Kevin and Bill are pleased to be joined by Darth Vader's bellicose but lovable brother Chad! Yes, the movie that gave us one of cinema's most startling revelations, and perhaps the most memorable silver screen quote ever (\"I thought that hairy beast would be the end of me\") gets the RiffTrax treatment.  Lots of laughs. Lots of Chad Vader. And no pod racing.  (Note: We were pleased to be joined in the writing and performing of this by Matt Sloan and Aaron Yonda, the mad geniuses who bring you Blame Society Productions.)",
+    "vote_average" : "0.0"
+  }, {
+    "original_title" : "2001: A Space Odyssey",
+    "release_date" : "1968-04-02",
+    "overview" : "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.",
+    "vote_average" : "8.1"
+  }, {
+    "original_title" : "Blade Runner",
+    "release_date" : "1982-06-25",
+    "overview" : "In the smog-choked dystopian Los Angeles of 2019, blade runner Rick Deckard is called out of retirement to terminate a quartet of replicants who have escaped to Earth seeking their creator for a way to extend their short life spans.",
+    "vote_average" : "7.939"
+  } ]
+}

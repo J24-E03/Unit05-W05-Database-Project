@@ -1,0 +1,57 @@
+{
+  "id" : 10,
+  "userId" : 4,
+  "timestamp" : "2025-02-19T16:13:38.93851661",
+  "query" : "ich möchte gerne einen film sehen, der sehr ähnlich wie alle steht im kopf ist",
+  "movies" : [ {
+    "original_title" : "Edge of Tomorrow",
+    "release_date" : "2014-05-27",
+    "overview" : "Major Bill Cage is an officer who has never seen a day of combat when he is unceremoniously demoted and dropped into combat. Cage is killed within minutes, managing to take an alpha alien down with him. He awakens back at the beginning of the same day and is forced to fight and die again... and again - as physical contact with the alien has thrown him into a time loop.",
+    "vote_average" : "7.628"
+  }, {
+    "original_title" : "Cloud Atlas",
+    "release_date" : "2012-10-26",
+    "overview" : "A set of six nested stories spanning time between the 19th century and a distant post-apocalyptic future. Cloud Atlas explores how the actions and consequences of individual lives impact one another throughout the past, the present and the future. Action, mystery and romance weave through the story as one soul is shaped from a killer into a hero and a single act of kindness ripples across centuries to inspire a revolution in the distant future.  Based on the award winning novel by David Mitchell. Directed by Tom Tykwer and the Wachowskis.",
+    "vote_average" : "6.888"
+  }, {
+    "original_title" : "The Prestige",
+    "release_date" : "2006-10-17",
+    "overview" : "A mysterious story of two magicians whose intense rivalry leads them on a life-long battle for supremacy -- full of obsession, deceit and jealousy with dangerous and deadly consequences.",
+    "vote_average" : "8.204"
+  }, {
+    "original_title" : "Looper",
+    "release_date" : "2012-09-26",
+    "overview" : "In the year 2044, time travel has not yet been invented but in 30 years it will have been. When the mob wants to get rid of someone, they will send their target into the past where a looper, a hired gun, like Joe is waiting to mop up. Joe is getting rich and life is good until the day the mob decides to close the loop, sending back Joe's future self for assassination.",
+    "vote_average" : "6.89"
+  }, {
+    "original_title" : "Source Code",
+    "release_date" : "2011-03-30",
+    "overview" : "When decorated soldier Captain Colter Stevens wakes up in the body of an unknown man, he discovers he's part of a mission to find the bomber of a Chicago commuter train.",
+    "vote_average" : "7.303"
+  }, {
+    "original_title" : "The Matrix",
+    "release_date" : "1999-03-31",
+    "overview" : "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+    "vote_average" : "8.2"
+  }, {
+    "original_title" : "Coherence",
+    "release_date" : "2013-09-19",
+    "overview" : "On the night of an astronomical anomaly, eight friends at a dinner party experience a troubling chain of reality bending events.",
+    "vote_average" : "7.2"
+  }, {
+    "original_title" : "Inception",
+    "release_date" : "2010-07-15",
+    "overview" : "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
+    "vote_average" : "8.369"
+  }, {
+    "original_title" : "Dark City",
+    "release_date" : "1998-02-27",
+    "overview" : "A man struggles with memories of his past, including a wife he cannot remember, in a nightmarish world with no sun and run by beings with telekinetic powers who seek the souls of humans.",
+    "vote_average" : "7.322"
+  }, {
+    "original_title" : "Predestination",
+    "release_date" : "2014-08-28",
+    "overview" : "Predestination chronicles the life of a Temporal Agent sent on an intricate series of time-travel journeys designed to prevent future killers from committing their crimes. Now, on his final assignment, the Agent must stop the one criminal that has eluded him throughout time and prevent a devastating attack in which thousands of lives will be lost.",
+    "vote_average" : "7.4"
+  } ]
+}

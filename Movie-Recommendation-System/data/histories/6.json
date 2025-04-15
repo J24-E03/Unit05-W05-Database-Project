@@ -1,0 +1,32 @@
+{
+  "id" : 6,
+  "userId" : 1,
+  "timestamp" : "2025-02-19T15:03:10.63460841",
+  "query" : "i like to watch some romance movies",
+  "movies" : [ {
+    "original_title" : "Pride and Prejudice",
+    "release_date" : "1940-07-26",
+    "overview" : "Mrs. Bennet wishes to wed her five unmarried daughters and is overjoyed when a wealthy bachelor begins living nearby, but misunderstandings make happiness difficult.",
+    "vote_average" : "6.9"
+  }, {
+    "original_title" : "The Notebook",
+    "release_date" : "2004-05-25",
+    "overview" : "An epic love story centered around an older man who reads aloud to a woman with Alzheimer's. From a faded notebook, the old man's words bring to life the story about a couple who is separated by World War II, and is then passionately reunited, seven years later, after they have taken different paths.",
+    "vote_average" : "7.9"
+  }, {
+    "original_title" : "Romeo and Juliet",
+    "release_date" : "1968-04-02",
+    "overview" : "Romeo Montague and Juliet Capulet fall in love against the wishes of their feuding families. Driven by their passion, the young lovers defy their destiny and elope, only to suffer the ultimate tragedy.",
+    "vote_average" : "7.4"
+  }, {
+    "original_title" : "The Fault in Our Stars",
+    "release_date" : "2014-05-16",
+    "overview" : "Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a patient named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten.",
+    "vote_average" : "7.6"
+  }, {
+    "original_title" : "Titanic",
+    "release_date" : "1997-11-18",
+    "overview" : "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic, 84 years later. A young Rose boards the ship with her mother and fiancé. Meanwhile, Jack Dawson and Fabrizio De Rossi win third-class tickets aboard the ship. Rose tells the whole story from Titanic's departure through to its death—on its first and last voyage—on April 15, 1912.",
+    "vote_average" : "7.9"
+  } ]
+}
