@@ -64,6 +64,9 @@ public class GenreRepository {
     }
 
     public void addNewGenre(Genre genre) {
+        if (isGenreExist(genre.getId(), genre.getName())) {
+            return;
+        }
         String query = """
                 INSERT INTO genres(genre_id, name)
                 VALUES (?,?)
@@ -99,5 +102,30 @@ public class GenreRepository {
         }
         return genresCount == 0;
     }
+
+    public boolean isGenreExist(Integer genreId, String name) {
+        String query = """
+                SELECT COUNT(*) AS genres_count FROM genres WHERE genre_id = ? AND name = ?
+                """;
+
+        int count = 0;
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setInt(1, genreId);
+            preparedStatement.setString(2, name);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    count = resultSet.getInt("genres_count");
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return count == 1;
+    }
+
 
 }

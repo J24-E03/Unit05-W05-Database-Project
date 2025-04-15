@@ -9,11 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class MovieRepository {
     private static MovieRepository instance = null;
@@ -84,7 +82,10 @@ public class MovieRepository {
                         movieDetails.getGenreIds().forEach(genreId -> {
                             Optional<Genre> genre = genreRepository.getGenre(genreId);
                             if (genre.isPresent()) {
-                                addNewMovieGenreRelation(connection, movieIdFinal, genre.get().getId());
+                                Genre genreFinal = genre.get();
+                                if (!genreMovieRelationExists(connection, movieIdFinal, genreFinal.getId())) {
+                                    addNewMovieGenreRelation(connection, movieIdFinal, genreFinal.getId());
+                                }
                                 movieGenres.add(genre.get());
                             }
 
@@ -126,6 +127,69 @@ public class MovieRepository {
             if (updatedRows == 0) {
                 throw new RuntimeException("Could not add genre: " + genreId);
             }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private boolean genreMovieRelationExists(Connection connection, int movieId, int genreId) {
+        String query = """
+                SELECT count(*) AS counter FROM movie_genres WHERE movie_id = ? AND genre_id = ?
+                """;
+
+        int counter = 0;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setInt(1, movieId);
+            preparedStatement.setInt(2, genreId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    counter = resultSet.getInt("counter");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return counter == 1;
+    }
+
+    public Optional<Movie> getMovieById(Connection connection, Integer movieId) {
+        String query = """
+                SELECT m.*, mg.genre_id
+                FROM movies m
+                JOIN movie_genres mg ON m.movie_id = mg.movie_id
+                WHERE m.movie_id = ?
+                """;
+
+        Movie movie = null;
+        Set<Genre> genres = new HashSet<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setInt(1, movieId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+               while (resultSet.next()) {
+                    if (movie == null) {
+                        movie = new Movie();
+                        movie.setId(movieId);
+                        movie.setTitle(resultSet.getString("title"));
+                        movie.setReleaseDate(resultSet.getDate("release_date").toLocalDate());
+                        movie.setOverview(resultSet.getString("overview"));
+                        movie.setRating(resultSet.getDouble("rating"));
+                    }
+
+                    Optional<Genre> genreOptional = genreRepository.getGenre(resultSet.getInt("genre_id"));
+                    genreOptional.ifPresent(genres::add);
+                }
+            }
+            if (movie != null) {
+                movie.setGenres(genres);
+                return Optional.of(movie);
+            } else {
+                return Optional.empty();
+            }
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

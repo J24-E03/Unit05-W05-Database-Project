@@ -2,7 +2,6 @@ package org.dci.menu;
 
 import org.dci.domain.User;
 import org.dci.domain.UserType;
-import org.dci.repository.HistoryRepository;
 import org.dci.repository.UserRepository;
 import org.dci.utils.Logger;
 

@@ -2,12 +2,9 @@ package org.dci;
 
 
 import org.dci.menu.MainMenu;
-import org.dci.repository.HistoryRepository;
 import org.dci.repository.UserRepository;
 import org.dci.service.MovieRecommendationService;
 
-import java.io.File;
-import java.nio.file.Path;
 import java.util.*;
 
 public class ConsoleApplication {

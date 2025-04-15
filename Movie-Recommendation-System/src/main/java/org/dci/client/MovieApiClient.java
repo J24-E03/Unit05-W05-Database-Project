@@ -49,7 +49,7 @@ public class MovieApiClient {
 
     public Set<Genre> loadGenres() {
         Set<Genre> movieGenres = loadMoviesGenres();
-        movieGenres.addAll(loadMoviesGenres());
+        movieGenres.addAll(loadTVSeriesGenres());
         return movieGenres;
     }
     private Set<Genre> loadMoviesGenres() {

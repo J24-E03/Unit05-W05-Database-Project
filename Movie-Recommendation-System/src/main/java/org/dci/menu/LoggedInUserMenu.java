@@ -6,6 +6,7 @@ import org.dci.domain.User;
 import org.dci.domain.UserType;
 
 import org.dci.repository.MovieRepository;
+import org.dci.repository.QueryRepository;
 import org.dci.service.MovieRecommendationService;
 import org.dci.utils.Colors;
 import org.dci.utils.Logger;
@@ -21,6 +22,7 @@ public class LoggedInUserMenu extends Menu {
     private User loggedInUser;
     private final MovieRecommendationService movieService = MovieRecommendationService.getInstance();
     private final MovieRepository movieRepository = MovieRepository.getInstance();
+    private final QueryRepository queryRepository = QueryRepository.getInstance();
 
 
     public LoggedInUserMenu(User user) {
@@ -74,6 +76,8 @@ public class LoggedInUserMenu extends Menu {
 
 
             movies.forEach(movie -> Logger.printResult(movie.makeMovieDetailsReadyForPrint()));
+            queryRepository.addNewQuery(loggedInUser.getId(), userInput, movies);
+
 
         } catch (InterruptedException e) {
             Logger.error("An error occurred: " + e.getMessage());
@@ -81,8 +85,8 @@ public class LoggedInUserMenu extends Menu {
     }
 
     private void viewHistory() {
-        Logger.printResultTitle("These are your chat histories:");
-        //historyRepository.getUserHistory(loggedInUser.getId()).forEach(history -> Logger.printResultTitle(history.prepareHistoryTobeShown()));
+       HistoryMenu historyMenu = new HistoryMenu(loggedInUser);
+       historyMenu.show();
     }
 
     public void upgradeToPremium() {

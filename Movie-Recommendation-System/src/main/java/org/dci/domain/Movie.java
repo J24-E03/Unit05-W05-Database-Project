@@ -63,4 +63,16 @@ public class Movie {
                 ", genres=" + genres +
                 '}';
     }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Movie movie)) return false;
+
+        return id.equals(movie.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
