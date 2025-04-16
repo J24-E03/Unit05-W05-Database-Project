@@ -1,10 +1,7 @@
 package org.dci.menu;
 
 import org.dci.client.MovieDetails;
-import org.dci.domain.Actor;
-import org.dci.domain.Movie;
-import org.dci.domain.User;
-import org.dci.domain.UserType;
+import org.dci.domain.*;
 
 import org.dci.repository.ActorRepository;
 import org.dci.repository.MovieRepository;
@@ -15,6 +12,8 @@ import org.dci.utils.Colors;
 import org.dci.utils.Logger;
 
 
+import javax.swing.text.html.Option;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +49,8 @@ public class LoggedInUserMenu extends Menu {
         if (loggedInUser.getType() == UserType.NORMAL_USER) {
             actionList.add(new Action("Upgrade to premium", this::upgradeToPremium));
         }
+        actionList.add(new Action("View My Profile Information", this::viewUserInfo));
+        actionList.add(new Action("Update My Profile Information", this::updateUserInfo));
         actionList.add(new Action("Logout", this::logOut));
         return actionList;
     }
@@ -117,6 +118,58 @@ public class LoggedInUserMenu extends Menu {
             }
 
         } while (keepAsking);
+    }
+
+    public Optional<UserDetails> viewUserInfo() {
+        Optional<UserDetails> userDetails = userRepository.viewUserInfo(loggedInUser);
+        if (userDetails.isPresent()) {
+            System.out.println("Name: " + userDetails.get().getFullName());
+            System.out.println("Date Of Birth: " + userDetails.get().getBirthDate());
+            System.out.println("Email Address: " + userDetails.get().getEmail());
+
+        }
+        return userDetails;
+    }
+
+    public void updateUserInfo() {
+        Optional<UserDetails> userDetailsOptional = viewUserInfo();
+        if (userDetailsOptional.isPresent()) {
+            try {
+                UserDetails userDetails = userDetailsOptional.get();
+                System.out.println("Would you like to update your profile? (Y/N)");
+                String userInput = scanner.nextLine();
+                if (userInput.equalsIgnoreCase("Y")) {
+                    System.out.println("Please Enter your Full Name or -1 to skip updating your name: ");
+                    String fullName = scanner.nextLine();
+                    if (!fullName.equals("-1")) {
+                        userDetails.setFullName(fullName);
+                    }
+
+                    System.out.println("Please Enter your date of birth or -1 to skip updating your birthdate: ");
+                    String dateOfBirth = scanner.nextLine();
+                    if (!dateOfBirth.equals("-1")) {
+                        LocalDate birthDate = userRepository.validateDateOfBirth(dateOfBirth);
+                        userDetails.setBirthDate(birthDate);
+                    }
+
+                    System.out.println("Please Enter your email address or -1 to skip updating your email: ");
+                    String email = scanner.nextLine();
+                    if (!email.equals("-1")) {
+                        userRepository.validateEmail(email);
+                        userDetails.setEmail(email);
+                    }
+
+                    if (userRepository.updateUser(userDetails)) {
+                        System.out.println("Your account has been successfully updated!");
+                    } else {
+                        System.out.println("An Error occurred while updating your account. Please try again.");
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 
     private void populateUserActions() {

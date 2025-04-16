@@ -209,4 +209,48 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public Optional<UserDetails> viewUserInfo(User user) {
+        String query = "SELECT * FROM get_user_profile(?)";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setInt(1, user.getId());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(new UserDetails(
+                            user.getId(),
+                            resultSet.getString("full_name"),
+                            resultSet.getDate("date_of_birth").toLocalDate(),
+                            resultSet.getString("email")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return Optional.empty();
+    }
+
+    public boolean updateUser(UserDetails userDetails) {
+        String query = """
+                UPDATE user_details SET full_name = ?, date_of_birth = ?, email = ?
+                WHERE user_id = ?
+                """;
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);) {
+            preparedStatement.setString(1, userDetails.getFullName());
+            preparedStatement.setDate(2, Date.valueOf(userDetails.getBirthDate()));
+            preparedStatement.setString(3, userDetails.getEmail());
+            preparedStatement.setInt(4, userDetails.getUser_id());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+
+            return rowsUpdated > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
