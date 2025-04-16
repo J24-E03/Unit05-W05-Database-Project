@@ -51,7 +51,8 @@ public class UserRepository {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error("Could not get user: {}", username, e);
+            throw new RuntimeException("Could not get user", e);
         }
         return Optional.empty();
     }
@@ -113,10 +114,12 @@ public class UserRepository {
                 }
             } catch (SQLException e) {
                 connection.rollback();
+                logger.error("Could not sign up: {}", username, e);
                 throw new RuntimeException("Error during user sign-up: " + e.getMessage(), e);
             }
 
         } catch (SQLException e) {
+            logger.error("Could not sign up: {}", username, e);
             throw new RuntimeException("Error getting database connection: " + e.getMessage(), e);
         }
         return Optional.empty();
@@ -142,6 +145,7 @@ public class UserRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not add new user details", e);
             throw new RuntimeException("Error inserting user details: " + e.getMessage(), e);
         }
 
@@ -206,6 +210,7 @@ public class UserRepository {
             return result > 0;
 
         } catch (SQLException e) {
+            logger.error("Could not upgrade user: {}", user.getUsername(), e);
             throw new RuntimeException(e);
         }
     }
@@ -227,6 +232,7 @@ public class UserRepository {
                 }
             }
         } catch (SQLException e) {
+            logger.error("Could not retrieve user details: {}", user.getUsername(), e);
             throw new RuntimeException(e);
         }
         return Optional.empty();
@@ -249,6 +255,7 @@ public class UserRepository {
             return rowsUpdated > 0;
 
         } catch (SQLException e) {
+            logger.error("Could not update user details for userID: {}", userDetails.getUser_id(), e);
             throw new RuntimeException(e);
         }
 

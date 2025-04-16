@@ -24,7 +24,6 @@ public class GenreRepository {
 
     public Set<Genre> getMovieGenres(Integer movieId) {
         Set<Genre> genres = new HashSet<>();
-        List<Integer> genresIds = new ArrayList<>();
         String query = "SELECT * FROM movie_genres WHERE movie_id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
@@ -36,6 +35,7 @@ public class GenreRepository {
                 }
             }
         } catch (SQLException e) {
+            logger.error("Could not get genres for movieID: {}", movieId, e);
             throw new RuntimeException(e);
         }
         return genres;
@@ -58,6 +58,7 @@ public class GenreRepository {
                 }
             }
         } catch (SQLException e) {
+            logger.error("Could not get genre for genreID: {}", genreId, e);
             throw new RuntimeException(e);
         }
         return Optional.empty();
@@ -82,6 +83,7 @@ public class GenreRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not add genre: {}", genre, e);
             throw new RuntimeException(e);
         }
     }
@@ -98,6 +100,7 @@ public class GenreRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not get genres count", e);
             throw new RuntimeException(e);
         }
         return genresCount == 0;
@@ -121,6 +124,7 @@ public class GenreRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not get genre with genreID: {}", genreId, e);
             throw new RuntimeException(e);
         }
 

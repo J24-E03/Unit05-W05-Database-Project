@@ -51,12 +51,13 @@ public class MovieRepository {
                 }
             }
 
-
         } catch (SQLException ex) {
+            logger.error("Could not find movie by title: {}", title, ex);
             throw new RuntimeException(ex);
         }
         return Optional.empty();
     }
+
     public Optional<Movie> addNewMovie(MovieDetails movieDetails, List<Actor> actors) {
         String query = """
                 INSERT INTO movies (title, release_date, overview, rating)
@@ -113,6 +114,7 @@ public class MovieRepository {
 
             }
         } catch (SQLException e) {
+            logger.error("Could not add new movie: {}", movieDetails.getTitle(), e);
             throw new RuntimeException(e);
         }
     }
@@ -130,10 +132,12 @@ public class MovieRepository {
             int updatedRows = preparedStatement.executeUpdate();
 
             if (updatedRows == 0) {
+                logger.error("Could not add new genre relation to movie: {}", movieId);
                 throw new RuntimeException("Could not add genre: " + genreId);
             }
 
         } catch (SQLException e) {
+            logger.error("Could not add new genre relation to movie: {}", movieId);
             throw new RuntimeException(e);
         }
     }
@@ -155,6 +159,7 @@ public class MovieRepository {
                 }
             }
         } catch (SQLException e) {
+            logger.error("Could not find genre relation to movie: {}", movieId);
             throw new RuntimeException(e);
         }
 
@@ -197,6 +202,7 @@ public class MovieRepository {
 
 
         } catch (SQLException e) {
+            logger.error("Could not find movie by id: {}", movieId, e);
             throw new RuntimeException(e);
         }
     }
@@ -218,6 +224,7 @@ public class MovieRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not add movie actor relationship for movieID: {}", movieId, e);
             throw new RuntimeException(e);
         }
     }

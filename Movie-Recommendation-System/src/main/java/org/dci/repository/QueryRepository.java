@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -59,6 +58,7 @@ public class QueryRepository {
                 return Optional.empty();
             }
         } catch (SQLException e) {
+            logger.error("Could not add new query for userID: {}", userId, e);
             throw new RuntimeException(e);
         }
     }
@@ -78,6 +78,7 @@ public class QueryRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not add movie to query movies: {}", movieId, e);
             throw new RuntimeException(e);
         }
     }
@@ -112,6 +113,7 @@ public class QueryRepository {
             queryMoviesMap.forEach((query, movies) -> query.setMovies(movies));
             return queryMoviesMap.keySet().stream().toList();
         } catch (SQLException e) {
+            logger.error("Could not retrieve queries for userID: {}", loggedUser.getId(), e);
             throw new RuntimeException(e);
         }
     }
@@ -148,6 +150,7 @@ public class QueryRepository {
             queryMoviesMap.forEach((query, movies) -> query.setMovies(movies));
             return queryMoviesMap.keySet().stream().toList();
     } catch (SQLException e) {
+            logger.error("Could not retrieve queries for userID: {}", loggedUser.getId(), e);
         throw new RuntimeException(e);
     }
 

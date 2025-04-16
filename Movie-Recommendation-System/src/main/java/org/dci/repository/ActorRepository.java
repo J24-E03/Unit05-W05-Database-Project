@@ -44,6 +44,7 @@ public class ActorRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not add new actor: {}", actor.getId(), e);
             throw new RuntimeException(e);
         }
         return Optional.empty();
@@ -65,6 +66,7 @@ public class ActorRepository {
             }
 
         } catch (SQLException e) {
+            logger.error("Could not get actor with actorID: {}", actor.getId(), e);
             throw new RuntimeException(e);
         }
 
