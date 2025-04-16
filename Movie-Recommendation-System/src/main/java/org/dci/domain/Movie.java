@@ -37,6 +37,18 @@ public class Movie {
         String releaseDateLine = BOLD + "Release Date: " + RESET_BOLD + ITALIC + releaseDate + RESET_ITALIC;
         String overviewLine = BOLD + "Overview: " + RESET_BOLD + ITALIC + overview + RESET_ITALIC;
         String ratingLine = BOLD + "Rating: " + RESET_BOLD + ITALIC + rating + RESET_ITALIC;
+        String genreHeader = BOLD + "Genres: " + RESET_BOLD;
+        String genresLine = genres.stream()
+                .map(g -> ITALIC + g.getName() + RESET_ITALIC)
+                .reduce((g1, g2) -> g1 + ", " + g2)
+                .orElse(ITALIC + "None" + RESET_ITALIC);
+
+        String actorHeader = BOLD + "Actors:" + RESET_BOLD;
+        String actorsLine = actors.stream()
+                .map(a -> ITALIC + a.getName() + RESET_ITALIC)
+                .reduce((a1, a2) -> a1 + ", " + a2)
+                .orElse(ITALIC + "None" + RESET_ITALIC);
+
 
 
         int maxVisibleLength = Math.max(visibleLength(titleLine), Math.max(visibleLength(releaseDateLine),
@@ -52,6 +64,10 @@ public class Movie {
                 formatLine(INDENT + ratingLine, boxWidth) + NEW_LINE +
                 formatLine(INDENT + releaseDateLine, boxWidth) + NEW_LINE+
                 formatLine(INDENT + overviewLine, boxWidth) + NEW_LINE +
+                formatLine(INDENT + genreHeader, boxWidth) + NEW_LINE +
+                formatLine(INDENT + "  " + genresLine, boxWidth) + NEW_LINE +
+                formatLine(INDENT + actorHeader, boxWidth) + NEW_LINE +
+                formatLine(INDENT + "  " + actorsLine, boxWidth) + NEW_LINE +
                 bottomBorder;
     }
 

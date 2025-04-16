@@ -12,4 +12,9 @@ import lombok.NoArgsConstructor;
 public class Actor {
     private Integer id;
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
