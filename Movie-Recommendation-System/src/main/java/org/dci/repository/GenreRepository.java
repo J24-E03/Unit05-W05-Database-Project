@@ -30,7 +30,7 @@ public class GenreRepository {
             preparedStatement.setInt(1, movieId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    Optional<Genre> genre = getGenre(resultSet.getInt("genre_id"));
+                    Optional<Genre> genre = getGenreById(resultSet.getInt("genre_id"));
                     genre.ifPresent(genres::add);
                 }
             }
@@ -41,7 +41,7 @@ public class GenreRepository {
         return genres;
     }
 
-    public Optional<Genre> getGenre(int genreId) {
+    public Optional<Genre> getGenreById(int genreId) {
         String query = """
                 SELECT name FROM genres WHERE genre_id = ?
                 """;

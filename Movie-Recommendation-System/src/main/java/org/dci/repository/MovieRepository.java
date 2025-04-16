@@ -19,6 +19,7 @@ public class MovieRepository {
     private static final Logger logger = LoggerFactory.getLogger(MovieRepository.class);
     private static final HikariDataSource dataSource = HikariCPConfig.getDataSource();
     private static final GenreRepository genreRepository = GenreRepository.getInstance();
+    private static final ActorRepository actorRepository = ActorRepository.getInstance();
 
     public static MovieRepository getInstance() {
         return Objects.requireNonNullElseGet(instance
@@ -83,7 +84,7 @@ public class MovieRepository {
                         int movieIdFinal = movieId;
                         actors.forEach(actor -> {addMovieActorRelation(connection, movieIdFinal, actor.getId());});
                         movieDetails.getGenreIds().forEach(genreId -> {
-                            Optional<Genre> genre = genreRepository.getGenre(genreId);
+                            Optional<Genre> genre = genreRepository.getGenreById(genreId);
                             if (genre.isPresent()) {
                                 Genre genreFinal = genre.get();
                                 if (!genreMovieRelationExists(connection, movieIdFinal, genreFinal.getId())) {
@@ -168,14 +169,16 @@ public class MovieRepository {
 
     public Optional<Movie> getMovieById(Connection connection, Integer movieId) {
         String query = """
-                SELECT m.*, mg.genre_id
+                SELECT m.*, mg.genre_id, ma.actor_id
                 FROM movies m
                 JOIN movie_genres mg ON m.movie_id = mg.movie_id
+                JOIN movie_actors ma ON m.movie_id = ma.movie_id
                 WHERE m.movie_id = ?
                 """;
 
         Movie movie = null;
         Set<Genre> genres = new HashSet<>();
+        Set<Actor> actors = new HashSet<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query);) {
             preparedStatement.setInt(1, movieId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -188,13 +191,15 @@ public class MovieRepository {
                         movie.setOverview(resultSet.getString("overview"));
                         movie.setRating(resultSet.getDouble("rating"));
                     }
-
-                    Optional<Genre> genreOptional = genreRepository.getGenre(resultSet.getInt("genre_id"));
+                    Optional<Actor> actorOptional = actorRepository.getActorById(resultSet.getInt("actor_id"));
+                    Optional<Genre> genreOptional = genreRepository.getGenreById(resultSet.getInt("genre_id"));
                     genreOptional.ifPresent(genres::add);
+                    actorOptional.ifPresent(actors::add);
                 }
             }
             if (movie != null) {
                 movie.setGenres(genres);
+                movie.setActors(actors.stream().toList());
                 return Optional.of(movie);
             } else {
                 return Optional.empty();
