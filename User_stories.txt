@@ -1,0 +1,27 @@
+1. As a visitor, I want to create a user account so that I can start using the movie recommendation system.
+
+2. As a user, I want to log in securely so that I can access my personalized features.
+
+3. As a user, I want my personal data (name, email, etc.) to be stored securely so that I feel safe.
+
+4. As a user, I want to view my personal information (name, email, date of birth) so that I can verify and update my details if needed.
+
+5. As a user, I want to update my personal information (name, email, date of birth) so that I can keep my account up to date.
+
+6. As a user, I want to get movie recommendations based on my input so that I can find something to watch.
+
+7. As a user, I want to view the details of recommended movies (release date, overview, rating) so that I can decide what to watch.
+
+8. As a user, I want to see the list of actors in a recommended movie so that I can recognize familiar faces.
+
+9. As a user, I want to view the genres of each movie in the recommendation so that I can pick according to my preferences.
+
+10. As a user, I want my search history to be saved so that I can revisit my previous queries.
+
+11. As a user, I want to filter my search history by date so that I can find past queries within a specific time range.
+
+12. As a normal user, I want the option to upgrade to a premium account so that I can get more personalized or extended features.
+
+13. As a premium user, I want to receive more movie suggestions compared to a normal user so that I can explore more options.
+
+14. As a user, I want to log out securely when I’m done.
