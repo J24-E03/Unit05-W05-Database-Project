@@ -8,7 +8,7 @@
 24754||10|C|G
 24754||-9223372036854775808|T|G
 24754||10|T|G</Grants>
-      <IntrospectionStateNumber>1714</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2241</IntrospectionStateNumber>
       <ServerVersion>17.4</ServerVersion>
       <StartupTime>1744613793</StartupTime>
       <TimeZones>true ACDT
@@ -1410,7 +1410,7 @@ true posixrules
 13236||10|C|G
 13236||-9223372036854775808|U|G
 13236||10|U|G</Grants>
-      <IntrospectionStateNumber>1714</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2241</IntrospectionStateNumber>
       <ObjectId>25813</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4938,8 +4938,8 @@ true posixrules
     <schema id="287" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>1714</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-04-15.17:11:33</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>2241</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-04-16.12:41:24</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>743</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -8300,7 +8300,27 @@ true posixrules
       <StateNumber>754</StateNumber>
       <OwnerName>postgres</OwnerName>
     </schema>
-    <sequence id="532" parent="287" name="actors_actor_id_seq">
+    <routine id="532" parent="287" name="delete_old_queries">
+      <ObjectId>25995</ObjectId>
+      <PgRoutineKind>pg-trigger</PgRoutineKind>
+      <ResultsDefinition>trigger</ResultsDefinition>
+      <Rows>0.0</Rows>
+      <SourceTextLength>104</SourceTextLength>
+      <StateNumber>2227</StateNumber>
+      <LanguageName>plpgsql</LanguageName>
+      <OwnerName>postgres</OwnerName>
+    </routine>
+    <routine id="533" parent="287" name="get_user_profile">
+      <ArgumentsDefinition>id_of_user integer</ArgumentsDefinition>
+      <ObjectId>25994</ObjectId>
+      <ResultsDefinition>TABLE(full_name character varying, date_of_birth date, email character varying)</ResultsDefinition>
+      <ReturnsSet>1</ReturnsSet>
+      <SourceTextLength>178</SourceTextLength>
+      <StateNumber>2224</StateNumber>
+      <LanguageName>plpgsql</LanguageName>
+      <OwnerName>postgres</OwnerName>
+    </routine>
+    <sequence id="534" parent="287" name="actors_actor_id_seq">
       <ObjectId>25872</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -8308,7 +8328,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="533" parent="287" name="genres_genre_id_seq">
+    <sequence id="535" parent="287" name="genres_genre_id_seq">
       <ObjectId>25924</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -8316,7 +8336,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="534" parent="287" name="movies_movie_id_seq">
+    <sequence id="536" parent="287" name="movies_movie_id_seq">
       <ObjectId>25836</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -8324,7 +8344,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="535" parent="287" name="queries_query_id_seq">
+    <sequence id="537" parent="287" name="queries_query_id_seq">
       <ObjectId>25894</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -8332,7 +8352,7 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="536" parent="287" name="users_user_id_seq">
+    <sequence id="538" parent="287" name="users_user_id_seq">
       <ObjectId>25814</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
@@ -8340,61 +8360,109 @@ true posixrules
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="537" parent="287" name="actors">
+    <table id="539" parent="287" name="actors">
       <ObjectId>25873</ObjectId>
-      <StateNumber>1576</StateNumber>
+      <StateNumber>1975</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="538" parent="287" name="genres">
+    <table id="540" parent="287" name="genres">
       <ObjectId>25925</ObjectId>
-      <StateNumber>1662</StateNumber>
+      <StateNumber>2240</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="539" parent="287" name="movie_actors">
+    <table id="541" parent="287" name="movie_actors">
       <ObjectId>25879</ObjectId>
-      <StateNumber>1670</StateNumber>
+      <StateNumber>1976</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="540" parent="287" name="movie_genres">
+    <table id="542" parent="287" name="movie_genres">
       <ObjectId>25857</ObjectId>
-      <StateNumber>1670</StateNumber>
+      <StateNumber>1977</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="541" parent="287" name="movies">
+    <table id="543" parent="287" name="movies">
       <ObjectId>25837</ObjectId>
       <StateNumber>1670</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="542" parent="287" name="queries">
+    <table id="544" parent="287" name="queries">
       <ObjectId>25895</ObjectId>
-      <StateNumber>1669</StateNumber>
+      <StateNumber>1978</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="543" parent="287" name="query_movies">
+    <table id="545" parent="287" name="query_movies">
       <ObjectId>25909</ObjectId>
-      <StateNumber>1670</StateNumber>
+      <StateNumber>1979</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="544" parent="287" name="user_details">
+    <table id="546" parent="287" name="user_details">
       <ObjectId>25824</ObjectId>
-      <StateNumber>1576</StateNumber>
+      <StateNumber>2229</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="545" parent="287" name="users">
+    <table id="547" parent="287" name="users">
       <ObjectId>25815</ObjectId>
       <StateNumber>1576</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="546" parent="537" name="actor_id">
+    <view id="548" parent="287" name="active_actors">
+      <ObjectId>26015</ObjectId>
+      <SourceTextLength>172</SourceTextLength>
+      <StateNumber>2237</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <view id="549" parent="287" name="active_users">
+      <ObjectId>26007</ObjectId>
+      <SourceTextLength>260</SourceTextLength>
+      <StateNumber>2235</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <view id="550" parent="287" name="movie_actor_view">
+      <ObjectId>26003</ObjectId>
+      <SourceTextLength>177</SourceTextLength>
+      <StateNumber>2234</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <view id="551" parent="287" name="multi_genre_movies">
+      <ObjectId>26011</ObjectId>
+      <SourceTextLength>174</SourceTextLength>
+      <StateNumber>2236</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <view id="552" parent="287" name="user_profile_view">
+      <ObjectId>25988</ObjectId>
+      <SourceTextLength>146</SourceTextLength>
+      <StateNumber>2217</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <view id="553" parent="287" name="user_query_history">
+      <ObjectId>26019</ObjectId>
+      <SourceTextLength>224</SourceTextLength>
+      <StateNumber>2238</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <argument id="554" parent="532">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>trigger|0s</StoredType>
+    </argument>
+    <argument id="555" parent="533">
+      <ArgumentDirection>T</ArgumentDirection>
+      <StoredType>table(&quot;full_name&quot; varchar, &quot;date_of_birth&quot; date, &quot;email&quot; varchar)|0v</StoredType>
+    </argument>
+    <argument id="556" parent="533" name="id_of_user">
+      <Position>1</Position>
+      <StoredType>integer|0s</StoredType>
+    </argument>
+    <column id="557" parent="539" name="actor_id">
       <DefaultExpression>nextval(&apos;actors_actor_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -8403,30 +8471,30 @@ true posixrules
       <SequenceId>25872</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="547" parent="537" name="name">
+    <column id="558" parent="539" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(150)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="548" parent="537" name="actors_pkey">
+    <index id="559" parent="539" name="actors_pkey">
       <ColNames>actor_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25877</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1576</StateNumber>
+      <StateNumber>1975</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="549" parent="537" name="actors_pkey">
+    <key id="560" parent="539" name="actors_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25878</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25877</UnderlyingIndexId>
     </key>
-    <column id="550" parent="538" name="genre_id">
+    <column id="561" parent="540" name="genre_id">
       <DefaultExpression>nextval(&apos;genres_genre_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -8435,61 +8503,61 @@ true posixrules
       <SequenceId>25924</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="551" parent="538" name="name">
+    <column id="562" parent="540" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1583</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="552" parent="538" name="genres_pkey">
+    <index id="563" parent="540" name="genres_pkey">
       <ColNames>genre_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25929</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1662</StateNumber>
+      <StateNumber>1974</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="553" parent="538" name="genres_name_key">
+    <index id="564" parent="540" name="genres_name_key">
       <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25931</ObjectId>
-      <StateNumber>1662</StateNumber>
+      <StateNumber>1974</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="554" parent="538" name="genres_pkey">
+    <key id="565" parent="540" name="genres_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25930</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1583</StateNumber>
       <UnderlyingIndexId>25929</UnderlyingIndexId>
     </key>
-    <key id="555" parent="538" name="genres_name_key">
+    <key id="566" parent="540" name="genres_name_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25932</ObjectId>
       <StateNumber>1583</StateNumber>
       <UnderlyingIndexId>25931</UnderlyingIndexId>
     </key>
-    <column id="556" parent="539" name="movie_id">
+    <column id="567" parent="541" name="movie_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="557" parent="539" name="actor_id">
+    <column id="568" parent="541" name="actor_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="558" parent="539" name="movie_actors_movie_id_fkey">
+    <foreign-key id="569" parent="541" name="movie_actors_movie_id_fkey">
       <ColNames>movie_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25884</ObjectId>
@@ -8498,7 +8566,7 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25837</RefTableId>
     </foreign-key>
-    <foreign-key id="559" parent="539" name="movie_actors_actor_id_fkey">
+    <foreign-key id="570" parent="541" name="movie_actors_actor_id_fkey">
       <ColNames>actor_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25889</ObjectId>
@@ -8507,38 +8575,38 @@ true posixrules
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25873</RefTableId>
     </foreign-key>
-    <index id="560" parent="539" name="movie_actors_pkey">
+    <index id="571" parent="541" name="movie_actors_pkey">
       <ColNames>movie_id
 actor_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25882</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1670</StateNumber>
+      <StateNumber>1976</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="561" parent="539" name="movie_actors_pkey">
+    <key id="572" parent="541" name="movie_actors_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25883</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25882</UnderlyingIndexId>
     </key>
-    <column id="562" parent="540" name="movie_id">
+    <column id="573" parent="542" name="movie_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="563" parent="540" name="genre_id">
+    <column id="574" parent="542" name="genre_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="564" parent="540" name="movie_genres_movie_id_fkey">
+    <foreign-key id="575" parent="542" name="movie_genres_movie_id_fkey">
       <ColNames>movie_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25862</ObjectId>
@@ -8547,30 +8615,37 @@ actor_id</ColNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25837</RefTableId>
     </foreign-key>
-    <index id="565" parent="540" name="movie_genres_pkey">
+    <foreign-key id="576" parent="542" name="movie_genres_genres_genre_id_fk">
+      <ColNames>genre_id</ColNames>
+      <ObjectId>26023</ObjectId>
+      <StateNumber>2240</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>25925</RefTableId>
+    </foreign-key>
+    <index id="577" parent="542" name="movie_genres_pkey">
       <ColNames>movie_id
 genre_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25860</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1670</StateNumber>
+      <StateNumber>1977</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="566" parent="540" name="movie_genres_pkey">
+    <key id="578" parent="542" name="movie_genres_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25861</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25860</UnderlyingIndexId>
     </key>
-    <check id="567" parent="541" name="movies_rating_check">
+    <check id="579" parent="543" name="movies_rating_check">
       <ColNames>rating</ColNames>
       <ObjectId>25841</ObjectId>
       <Predicate>(rating &gt;= 0.0) AND (rating &lt;= 10.0)</Predicate>
       <StateNumber>1576</StateNumber>
     </check>
-    <column id="568" parent="541" name="movie_id">
+    <column id="580" parent="543" name="movie_id">
       <DefaultExpression>nextval(&apos;movies_movie_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -8579,33 +8654,33 @@ genre_id</ColNames>
       <SequenceId>25836</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="569" parent="541" name="title">
+    <column id="581" parent="543" name="title">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="570" parent="541" name="release_date">
+    <column id="582" parent="543" name="release_date">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>date|0s</StoredType>
       <TypeId>1082</TypeId>
     </column>
-    <column id="571" parent="541" name="overview">
+    <column id="583" parent="543" name="overview">
       <Position>4</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="572" parent="541" name="rating">
+    <column id="584" parent="543" name="rating">
       <Position>5</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>numeric(3,1 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <index id="573" parent="541" name="movies_pkey">
+    <index id="585" parent="543" name="movies_pkey">
       <ColNames>movie_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25844</ObjectId>
@@ -8614,7 +8689,7 @@ genre_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="574" parent="541" name="movies_title_release_date_key">
+    <index id="586" parent="543" name="movies_title_release_date_key">
       <ColNames>title
 release_date</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -8626,20 +8701,20 @@ release_date</ColNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="575" parent="541" name="movies_pkey">
+    <key id="587" parent="543" name="movies_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25845</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25844</UnderlyingIndexId>
     </key>
-    <key id="576" parent="541" name="movies_title_release_date_key">
+    <key id="588" parent="543" name="movies_title_release_date_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25847</ObjectId>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25846</UnderlyingIndexId>
     </key>
-    <column id="577" parent="542" name="query_id">
+    <column id="589" parent="544" name="query_id">
       <DefaultExpression>nextval(&apos;queries_query_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -8648,28 +8723,28 @@ release_date</ColNames>
       <SequenceId>25894</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="578" parent="542" name="query">
+    <column id="590" parent="544" name="query">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="579" parent="542" name="user_id">
+    <column id="591" parent="544" name="user_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="580" parent="542" name="timestamp">
+    <column id="592" parent="544" name="timestamp">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>4</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="581" parent="542" name="queries_user_id_fkey">
+    <foreign-key id="593" parent="544" name="queries_user_id_fkey">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25904</ObjectId>
@@ -8678,37 +8753,44 @@ release_date</ColNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25815</RefTableId>
     </foreign-key>
-    <index id="582" parent="542" name="queries_pkey">
+    <index id="594" parent="544" name="queries_pkey">
       <ColNames>query_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25902</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1669</StateNumber>
+      <StateNumber>1978</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="583" parent="542" name="queries_pkey">
+    <key id="595" parent="544" name="queries_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25903</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25902</UnderlyingIndexId>
     </key>
-    <column id="584" parent="543" name="query_id">
+    <trigger id="596" parent="544" name="clean_old_queries">
+      <Events>I</Events>
+      <ObjectId>25997</ObjectId>
+      <StateNumber>2228</StateNumber>
+      <Turn>after-stmt</Turn>
+      <CallRoutineId>25995</CallRoutineId>
+    </trigger>
+    <column id="597" parent="545" name="query_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="585" parent="543" name="movie_id">
+    <column id="598" parent="545" name="movie_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="586" parent="543" name="query_movies_query_id_fkey">
+    <foreign-key id="599" parent="545" name="query_movies_query_id_fkey">
       <ColNames>query_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25914</ObjectId>
@@ -8717,7 +8799,7 @@ release_date</ColNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25895</RefTableId>
     </foreign-key>
-    <foreign-key id="587" parent="543" name="query_movies_movie_id_fkey">
+    <foreign-key id="600" parent="545" name="query_movies_movie_id_fkey">
       <ColNames>movie_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25919</ObjectId>
@@ -8726,49 +8808,55 @@ release_date</ColNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25837</RefTableId>
     </foreign-key>
-    <index id="588" parent="543" name="query_movies_pkey">
+    <index id="601" parent="545" name="query_movies_pkey">
       <ColNames>query_id
 movie_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25912</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1670</StateNumber>
+      <StateNumber>1979</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="589" parent="543" name="query_movies_pkey">
+    <key id="602" parent="545" name="query_movies_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25913</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25912</UnderlyingIndexId>
     </key>
-    <column id="590" parent="544" name="user_id">
+    <check id="603" parent="546" name="check_user_age">
+      <ColNames>date_of_birth</ColNames>
+      <ObjectId>25998</ObjectId>
+      <Predicate>date_of_birth &lt;= (CURRENT_DATE - &apos;18 years&apos;::interval)</Predicate>
+      <StateNumber>2229</StateNumber>
+    </check>
+    <column id="604" parent="546" name="user_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="591" parent="544" name="full_name">
+    <column id="605" parent="546" name="full_name">
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="592" parent="544" name="email">
+    <column id="606" parent="546" name="email">
       <Position>3</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="593" parent="544" name="date_of_birth">
+    <column id="607" parent="546" name="date_of_birth">
       <Position>4</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>date|0s</StoredType>
       <TypeId>1082</TypeId>
     </column>
-    <foreign-key id="594" parent="544" name="user_details_user_id_fkey">
+    <foreign-key id="608" parent="546" name="user_details_user_id_fkey">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25831</ObjectId>
@@ -8777,7 +8865,7 @@ movie_id</ColNames>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>25815</RefTableId>
     </foreign-key>
-    <index id="595" parent="544" name="user_details_pkey">
+    <index id="609" parent="546" name="user_details_pkey">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25827</ObjectId>
@@ -8786,7 +8874,7 @@ movie_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="596" parent="544" name="user_details_email_key">
+    <index id="610" parent="546" name="user_details_email_key">
       <ColNames>email</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25829</ObjectId>
@@ -8797,26 +8885,26 @@ movie_id</ColNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="597" parent="544" name="user_details_pkey">
+    <key id="611" parent="546" name="user_details_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25828</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25827</UnderlyingIndexId>
     </key>
-    <key id="598" parent="544" name="user_details_email_key">
+    <key id="612" parent="546" name="user_details_email_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25830</ObjectId>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25829</UnderlyingIndexId>
     </key>
-    <check id="599" parent="545" name="users_type_check">
+    <check id="613" parent="547" name="users_type_check">
       <ColNames>type</ColNames>
       <ObjectId>25819</ObjectId>
       <Predicate>(type)::text = ANY ((ARRAY[&apos;NORMAL_USER&apos;::character varying, &apos;PREMIUM_USER&apos;::character varying])::text[])</Predicate>
       <StateNumber>1576</StateNumber>
     </check>
-    <column id="600" parent="545" name="user_id">
+    <column id="614" parent="547" name="user_id">
       <DefaultExpression>nextval(&apos;users_user_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -8825,27 +8913,27 @@ movie_id</ColNames>
       <SequenceId>25814</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="601" parent="545" name="username">
+    <column id="615" parent="547" name="username">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="602" parent="545" name="password">
+    <column id="616" parent="547" name="password">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="603" parent="545" name="type">
+    <column id="617" parent="547" name="type">
       <Position>4</Position>
       <StateNumber>1576</StateNumber>
       <StoredType>varchar(50)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="604" parent="545" name="users_pkey">
+    <index id="618" parent="547" name="users_pkey">
       <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25820</ObjectId>
@@ -8854,7 +8942,7 @@ movie_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="605" parent="545" name="users_username_key">
+    <index id="619" parent="547" name="users_username_key">
       <ColNames>username</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25822</ObjectId>
@@ -8865,18 +8953,108 @@ movie_id</ColNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="606" parent="545" name="users_pkey">
+    <key id="620" parent="547" name="users_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25821</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25820</UnderlyingIndexId>
     </key>
-    <key id="607" parent="545" name="users_username_key">
+    <key id="621" parent="547" name="users_username_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>25823</ObjectId>
       <StateNumber>1576</StateNumber>
       <UnderlyingIndexId>25822</UnderlyingIndexId>
     </key>
+    <column id="622" parent="548" name="name">
+      <Position>1</Position>
+      <StateNumber>2237</StateNumber>
+      <StoredType>varchar(150)|0s</StoredType>
+    </column>
+    <column id="623" parent="548" name="movie_count">
+      <Position>2</Position>
+      <StateNumber>2237</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+    </column>
+    <column id="624" parent="549" name="username">
+      <Position>1</Position>
+      <StateNumber>2235</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="625" parent="549" name="full_name">
+      <Position>2</Position>
+      <StateNumber>2235</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="626" parent="549" name="total_queries">
+      <Position>3</Position>
+      <StateNumber>2235</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+    </column>
+    <column id="627" parent="550" name="Movie Title">
+      <Position>1</Position>
+      <StateNumber>2234</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="628" parent="550" name="Actor Name">
+      <Position>2</Position>
+      <StateNumber>2234</StateNumber>
+      <StoredType>varchar(150)|0s</StoredType>
+    </column>
+    <column id="629" parent="551" name="title">
+      <Position>1</Position>
+      <StateNumber>2236</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="630" parent="551" name="genre_count">
+      <Position>2</Position>
+      <StateNumber>2236</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+    </column>
+    <column id="631" parent="552" name="username">
+      <Position>1</Position>
+      <StateNumber>2217</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="632" parent="552" name="type">
+      <Position>2</Position>
+      <StateNumber>2217</StateNumber>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="633" parent="552" name="full_name">
+      <Position>3</Position>
+      <StateNumber>2217</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="634" parent="552" name="date_of_birth">
+      <Position>4</Position>
+      <StateNumber>2217</StateNumber>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="635" parent="552" name="email">
+      <Position>5</Position>
+      <StateNumber>2217</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="636" parent="553" name="username">
+      <Position>1</Position>
+      <StateNumber>2238</StateNumber>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="637" parent="553" name="title">
+      <Position>2</Position>
+      <StateNumber>2238</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="638" parent="553" name="query">
+      <Position>3</Position>
+      <StateNumber>2238</StateNumber>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="639" parent="553" name="timestamp">
+      <Position>4</Position>
+      <StateNumber>2238</StateNumber>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
   </database-model>
 </dataSource>

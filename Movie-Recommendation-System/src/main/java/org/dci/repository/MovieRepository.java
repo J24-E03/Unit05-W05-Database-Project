@@ -163,7 +163,7 @@ public class MovieRepository {
             throw new RuntimeException(e);
         }
 
-        return counter == 1;
+        return counter > 0;
     }
 
     public Optional<Movie> getMovieById(Connection connection, Integer movieId) {

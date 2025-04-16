@@ -128,7 +128,7 @@ public class GenreRepository {
             throw new RuntimeException(e);
         }
 
-        return count == 1;
+        return count > 0;
     }
 
 

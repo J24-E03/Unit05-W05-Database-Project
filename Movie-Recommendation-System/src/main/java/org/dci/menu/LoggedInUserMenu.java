@@ -11,8 +11,6 @@ import org.dci.service.MovieRecommendationService;
 import org.dci.utils.Colors;
 import org.dci.utils.Logger;
 
-
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
