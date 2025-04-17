@@ -19,7 +19,6 @@ public class MovieApiClient {
     private static final String API_URL_FETCH_MOVIE = "https://api.themoviedb.org/3";
     private static final String API_URL_FETCH_MOVIE_GENRES = "https://api.themoviedb.org/3/genre/movie/list?language=en";
     private static final String API_URL_FETCH_TV_GENRES = "https://api.themoviedb.org/3/genre/tv/list?language=en";
-    private static final String API_URL_FETCH_MOVIE_ACTORS = "https://api.themoviedb.org/3/genre/tv/list?language=en";
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final OkHttpClient client = new OkHttpClient();
     private static final int LIMIT = 9;
